@@ -1,0 +1,194 @@
+<!-- < <div class="container">
+    <h2>CHAT RealTime con Socket.IO</h2>
+    <div class="col-md-8">
+        <div class="form-group">
+            <div *ngFor="let a of myMessages">
+
+                <label for="" style="font-weight: bold;" > {{a.user}} </label>
+                <span> {{a.text}} </span>
+            </div>  
+            <label for="txtArea">Mensajes</label>
+         
+            <div *ngFor="let a of myMessages">
+                
+            </div>
+            <textarea id="txtArea"  cols="30" rows="20" class="form-control" readonly></textarea>
+      
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Escribe algo."  [(ngModel)]="userChat.text ">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" id="nuevo_comentario" (click)="myMessage()" type="button">Enviar!</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<!-- <div style="width: 40%; margin: auto; margin-top:100px;">
+    
+    <div *ngFor="let a of myMessages">
+
+        <label for="" style="font-weight: bold;" > {{a.user}} </label>
+        <span> {{a.text}} </span>
+    </div>
+
+    <div>
+        <label for=""> Hola <span style="font-weight: bold;"> {{userChat.user}} </span>....Escribe algo </label>
+        <input type="text" class="form-control" (change)="myMessage()" [(ngModel)]="mensaje ">
+    </div>
+    <div class="mt-3" >
+
+
+    </div>
+
+</div> -->
+
+
+
+<main class="content">
+    <div class="container p-0">
+
+		<h1 class="h3 mb-3">Messages</h1>
+
+		<div class="card">
+			<div class="row g-0">
+			
+				<div class="col-12 col-lg-7 col-xl-12">
+					<div class="py-2 px-4 border-bottom d-none d-lg-block">
+						<div class="d-flex align-items-center py-1">
+							<div class="position-relative">
+								<img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
+							</div>
+							<div class="flex-grow-1 pl-3">
+								<strong>Sharon Lessman</strong>
+								<div class="text-muted small"><em>Typing...</em></div>
+							</div>
+						
+						</div>
+					</div>
+
+					<div class="position-relative">
+						<div class="chat-messages p-4">
+							<div *ngFor="let data of myMessages">
+								<div *ngIf="data.nombre==nombre; else otro">
+								
+							<div class="chat-message-right pb-4">
+								<div>
+									<img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+									<div class="text-muted small text-nowrap mt-2">{{data.fecha | date }}</div>
+								</div>
+								<div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+									
+									{{data.mensaje}}
+								</div>
+							</div>
+						</div>
+							<ng-template #otro>
+							<div class="chat-message-left pb-4">
+								<div>
+									<img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
+									<div class="text-muted small text-nowrap mt-2">{{data.fecha | date }}</div>
+								</div>
+								<div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-1 ">
+								<p>{{data.mensaje}}</p>	
+								</div>
+							</div>
+							</ng-template>
+						</div>
+						</div>
+					</div>
+
+					<div class="flex-grow-0 py-3 px-4 border-top">
+						<div class="input-group">
+							<input type="file" [(ngModel)]="imagen">
+							<input type="text"  class="form-control" [(ngModel)]="mensaje" placeholder="Type your message">
+							<button (click)="myMessage()" class="btn btn-primary">Send</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+
+
+
+<!-- <main class="content">
+	<div class="container p-0">
+
+		<h1 class="h3 mb-3">Messages</h1>
+
+		<div class="card">
+			<div class="row g-0">
+
+				<div class="col-12 col-lg-7 col-xl-9">
+					<div class="py-2 px-4 border-bottom d-none d-lg-block">
+						<div class="d-flex align-items-center py-1">
+							<div class="position-relative">
+								<img src="https://bootdey.com/img/Content/avatar/avatar3.png"
+									class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
+							</div>
+							<div class="flex-grow-1 pl-3">
+								<strong>Sharon Lessman</strong>
+								<div class="text-muted small"><em>Typing...</em></div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="position-relative">
+						<div class="chat-messages p-4">
+							<div *ngFor="let data of myMessages">
+								<div class="chat-message-right pb-4">
+									<div *ngIf="data.nombre==nombre; else otro">
+										<div>
+											<img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+												class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+											<div class="text-muted small text-nowrap mt-2"> {{data.fecha | date }}
+											</div>
+										</div>
+										<div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+											<div class="font-weight-bold mb-1">{{data.nombre}}</div>
+											{{data.mensaje}}
+										</div>
+									</div>
+								</div>
+								<ng-template #otro>
+
+									<div class="chat-message-left pb-4">
+										<div>
+											<img src="https://bootdey.com/img/Content/avatar/avatar3.png"
+												class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
+											<div class="text-muted small text-nowrap mt-2">{{data.fecha | date }}</div>
+										</div>
+										<div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
+											<div class="font-weight-bold mb-1">{{data.nombre}}</div>
+											{{data.mensaje}}
+										</div>
+									</div>
+								</ng-template>
+							</div>
+
+
+
+						</div>
+					</div>
+
+					<div class="flex-grow-0 py-3 px-4 border-top">
+						<div class="input-group">
+							<input type="text" class="form-control" [(ngModel)]="mensaje"
+								placeholder="Type your message">
+							<button (click)="myMessage()" class="btn btn-primary">Send</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</main>  -->
